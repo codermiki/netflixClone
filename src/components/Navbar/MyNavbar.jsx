@@ -1,44 +1,68 @@
-import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationIcon from "@mui/icons-material/NotificationsNone";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import ArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import "../Header/header.css";
+import "./navbar.css";
 
-const MyNavbar = () => {
+const Header = () => {
+  const [show, handleShow] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        handleShow(true);
+      } else {
+        handleShow(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <Navbar bg="white" expand="lg">
-      <Navbar.Brand href="#">MyApp</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="me-auto ">
-          <div className="header-left d-md-flex">
-            <Nav.Link href="#">Home</Nav.Link>
-            <Nav.Link href="#">TVShows</Nav.Link>
-            <Nav.Link href="#">Movies</Nav.Link>
-            <Nav.Link href="#">Latest</Nav.Link>
-            <Nav.Link href="#">MyList</Nav.Link>
-            <Nav.Link href="#">Browse by Languages</Nav.Link>
-          </div>
-          <div className="header-right d-md-flex ">
-            <Nav.Link href="#">
+    <Navbar
+      expand="lg"
+      className={`header_outer_container ${show && "nav__black"}`}
+      fixed="top"
+    >
+      <Container>
+        <Navbar.Brand href="#home">
+          <img
+            src="https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.svg"
+            alt="Netflix Logo"
+            width="100"
+          />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="button" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#tvshows">TV Shows</Nav.Link>
+            <Nav.Link href="#movies">Movies</Nav.Link>
+            <Nav.Link href="#latest">Latest</Nav.Link>
+            <Nav.Link href="#mylist">My List</Nav.Link>
+            <Nav.Link href="#languages">Browse by Languages</Nav.Link>
+          </Nav>
+          <Nav className="ml-auto">
+            <Nav.Link href="#search">
               <SearchIcon />
             </Nav.Link>
-            <Nav.Link href="#">
+            <Nav.Link href="#notifications">
               <NotificationIcon />
             </Nav.Link>
-            <Nav.Link href="#">
+            <Nav.Link href="#account">
               <AccountBoxIcon />
             </Nav.Link>
-            <Nav.Link href="#">
+            <Nav.Link href="#dropdown">
               <ArrowDownIcon />
             </Nav.Link>
-          </div>
-        </Nav>
-      </Navbar.Collapse>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
     </Navbar>
   );
 };
 
-export default MyNavbar;
+export default Header;
