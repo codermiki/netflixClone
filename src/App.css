@@ -1,10 +1,5 @@
-/* App Style
-
-* {
-  margin: 0;
-  padding: 0;
-}
+/* App Style */
 .App {
-  background-color: black;
-  color: white;
-} */
+  width: 100%;
+  overflow-x: hidden;
+}
