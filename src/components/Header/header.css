@@ -44,6 +44,7 @@
   /* background-color: lightblue; */
 }
 .header_right {
+  background-color: #111 !important;
   width: 10%;
 }
 
