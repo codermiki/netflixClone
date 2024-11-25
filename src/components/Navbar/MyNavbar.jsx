@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationIcon from "@mui/icons-material/NotificationsNone";
@@ -9,17 +9,14 @@ import "./navbar.css";
 const Header = () => {
   const [show, handleShow] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        handleShow(true);
-      } else {
-        handleShow(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const handleScroll = () => {
+    if (window.scrollY > 100) {
+      handleShow(true);
+    } else {
+      handleShow(false);
+    }
+  };
+  window.addEventListener("scroll", handleScroll);
 
   return (
     <Navbar
